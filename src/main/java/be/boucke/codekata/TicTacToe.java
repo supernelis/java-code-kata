@@ -43,8 +43,13 @@ public class TicTacToe {
         return allMatch(getTopRow(), this.currentPlayer) ||
                 allMatch(getMiddleRow(), this.currentPlayer) ||
                 allMatch(getBottomRow(), this.currentPlayer) ||
-                allMatch(getLeftColumn(), this.currentPlayer);
+                allMatch(getLeftColumn(), this.currentPlayer)||
+                allMatch(getMiddleColumn(), this.currentPlayer);
 
+    }
+
+    private List<Player> getMiddleColumn() {
+        return getValuesAtPositions(topMiddle, middleMiddle, bottomMiddle);
     }
 
     private void switchPlayer() {

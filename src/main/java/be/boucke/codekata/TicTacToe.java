@@ -38,10 +38,14 @@ public class TicTacToe {
     }
 
     private boolean hasThreeInRow() {
-        return getTopRow().stream().allMatch(player -> currentPlayer.equals(player)) ||
-                getMiddleRow().stream().allMatch(player -> currentPlayer.equals(player)) ||
-                getBottomRow().stream().allMatch(player -> currentPlayer.equals(player));
+        return allMatch(getTopRow(), this.currentPlayer) ||
+                allMatch(getMiddleRow(), this.currentPlayer) ||
+                allMatch(getBottomRow(), this.currentPlayer);
 
+    }
+
+    private boolean allMatch(List<Player> listOfValues, Player expectedValue) {
+        return listOfValues.stream().allMatch(player -> expectedValue.equals(player));
     }
 
     private List<Player> getBottomRow() {

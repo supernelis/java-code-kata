@@ -1,8 +1,8 @@
 package be.boucke.codekata;
 
 public class TicTacToe {
-    public String currentPlayer() {
-        return "PlayerX";
+    public Player currentPlayer() {
+        return Player.PlayerX;
     }
 
     public GameFeedback feedback() {

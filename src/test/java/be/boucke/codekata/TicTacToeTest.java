@@ -18,8 +18,7 @@ public class TicTacToeTest {
 
     @Test
     public void aGameCanBeStarted() {
-        GameFeedback expectedFeedback = GameFeedback.gameStarted;
-        assertThatGameFeedbackEquals(expectedFeedback);
+        assertThatGameFeedbackEquals(GameFeedback.gameStarted);
     }
 
     @Test

@@ -118,6 +118,13 @@ public class TicTacToeTest {
         assertWinnerEqualsTo(Player.PlayerX);
     }
 
+    @Test
+    public void playerXWinsWhenSlashUpContainsAllX() {
+        playMoves(bottomLeft, bottomRight, middleMiddle, topMiddle, topRight);
+
+        assertWinnerEqualsTo(Player.PlayerX);
+    }
+
     private void assertThatGameFeedbackEquals(GameFeedback expectedFeedback) {
         assertThat(game.feedback(), equalTo(expectedFeedback));
     }

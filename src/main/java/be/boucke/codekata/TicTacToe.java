@@ -26,6 +26,10 @@ public class TicTacToe {
         moves.put(pos, currentPlayer);
         gameFeedback = GameFeedback.playSuccessfull;
 
+        if (moves.size() == 9) {
+            gameFeedback = GameFeedback.gameEndedWithDraw;
+        }
+
         switchPlayer();
     }
 

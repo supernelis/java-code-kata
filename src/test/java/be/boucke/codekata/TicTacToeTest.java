@@ -61,6 +61,21 @@ public class TicTacToeTest {
         assertThatCurrentPlayerEqualsTo(Player.PlayerO);
     }
 
+    @Test
+    public void drawWhenAllAreFullAndNonOfThePlayersHas3InRow() {
+        game.play(Position.topLeft);
+        game.play(Position.topMiddle);
+        game.play(Position.topRight);
+        game.play(Position.middleLeft);
+        game.play(Position.middleMiddle);
+        game.play(Position.bottomRight);
+        game.play(Position.middleRight);
+        game.play(Position.bottomLeft);
+        game.play(Position.bottomMiddle);
+
+        assertThatGameFeedbackEquals(GameFeedback.gameEndedWithDraw);
+    }
+
     private void assertThatGameFeedbackEquals(GameFeedback expectedFeedback) {
         assertThat(game.feedback(), equalTo(expectedFeedback));
     }

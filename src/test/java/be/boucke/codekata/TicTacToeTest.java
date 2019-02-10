@@ -22,12 +22,20 @@ public class TicTacToeTest {
     }
 
     @Test
-    public void playersCannotPlayOnTheSamePosition() {
+    public void playersCannotPlayOnAPlayedPosition() {
         Position pos = Position.bottomLeft;
         game.play(pos);
         game.play(pos);
 
         assertThat(game.feedback(),equalTo(GameFeedback.positionAlreadytaken));
+    }
+
+    @Test
+    public void playersCanPlayOnAnEmptyPosition() {
+        game.play(Position.bottomLeft);
+        game.play(Position.middleLeft);
+
+        assertThat(game.feedback(),equalTo(GameFeedback.playSuccessfull));
     }
 
     @Test

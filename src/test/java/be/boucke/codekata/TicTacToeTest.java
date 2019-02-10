@@ -17,9 +17,7 @@ public class TicTacToeTest {
 
     @Test
     public void xAlwaysGoesFirst(){
-        String playerX = "PlayerX";
-
-        assertThat(game.currentPlayer(),equalTo(playerX));
+        assertThat(game.currentPlayer(),equalTo("PlayerX"));
     }
 
     @Test

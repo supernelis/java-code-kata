@@ -2,12 +2,13 @@ package be.boucke.codekata;
 
 import java.util.*;
 
+import static be.boucke.codekata.Player.*;
 import static be.boucke.codekata.Position.*;
 
 public class TicTacToe {
 
     private GameFeedback gameFeedback = GameFeedback.gameStarted;
-    private Player currentPlayer = Player.PlayerX;
+    private Player currentPlayer = PlayerX;
     private final Map<Position, Player> moves = new HashMap<Position, Player>();
 
     public Player currentPlayer() {
@@ -68,10 +69,10 @@ public class TicTacToe {
     }
 
     private void switchPlayer() {
-        if (currentPlayer == Player.PlayerX) {
-            currentPlayer = Player.PlayerO;
+        if (currentPlayer == PlayerX) {
+            currentPlayer = PlayerO;
         } else {
-            currentPlayer = Player.PlayerX;
+            currentPlayer = PlayerX;
         }
     }
 

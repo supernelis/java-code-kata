@@ -26,11 +26,14 @@ public class TicTacToe {
         moves.put(pos, currentPlayer);
         gameFeedback = GameFeedback.playSuccessfull;
 
+        switchPlayer();
+    }
+
+    private void switchPlayer() {
         if (currentPlayer == Player.PlayerX) {
             currentPlayer = Player.PlayerO;
         } else {
             currentPlayer = Player.PlayerX;
         }
-
     }
 }

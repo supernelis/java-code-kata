@@ -1,8 +1,12 @@
 package be.boucke.codekata;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class TicTacToe {
 
     private Player currentPlayer = Player.PlayerX;
+    private Map<Position,Player> moves = new HashMap<Position, Player>();
 
     public Player currentPlayer() {
         return currentPlayer;
@@ -13,6 +17,11 @@ public class TicTacToe {
     }
 
     public void play(Position pos) {
+        if (moves.containsKey(pos)){
+            return;
+        }
+
+        moves.put(pos,currentPlayer);
 
         if (currentPlayer == Player.PlayerX) {
             currentPlayer = Player.PlayerO;

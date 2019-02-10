@@ -39,11 +39,8 @@ public class TicTacToeTest {
         assertThat(game.currentPlayer(),equalTo(Player.PlayerX));
     }
 
-
-
     @Test
-    @Ignore
-    public void currentPlayerDoesNotChangeWhenPlayingOnTheSamePosition() {
+    public void playersDoNotAlternateWhenPositionAlreadyTaken() {
         Position pos = Position.bottomLeft;
         game.play(pos);
         game.play(pos);

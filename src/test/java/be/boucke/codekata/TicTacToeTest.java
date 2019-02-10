@@ -15,6 +15,14 @@ public class TicTacToeTest {
         assertThat(game.currentPlayer(),equalTo(playerX));
     }
 
+    @Test
+    public void playersCannotPlayOnTheSamePosition() {
+        TicTacToe game = new TicTacToe();
 
+        Positions pos = Positions.bottomLeft;
+        game.play(pos);
+        game.play(pos);
 
+        assertThat(game.feedback(),equalTo(GameFeedback.positionAlreadytaken));
+    }
 }

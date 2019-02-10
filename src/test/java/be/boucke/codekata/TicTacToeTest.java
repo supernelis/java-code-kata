@@ -73,32 +73,33 @@ public class TicTacToeTest {
     public void playerXWinsWhenTheTopRowContainsAllX() {
         playMoves(topLeft, middleLeft, topRight, middleRight, topMiddle);
 
-        assertThatGameFeedbackEquals(GameFeedback.gameEndedWithWin);
-        assertThatCurrentPlayerEqualsTo(Player.PlayerX);
+        assertWinnerEqualsTo(Player.PlayerX);
     }
 
     @Test
     public void playerOWinsWhenTheMiddleRowContainsAllO() {
         playMoves(topLeft, middleLeft, topRight, middleRight, bottomMiddle, middleMiddle);
 
+        assertWinnerEqualsTo(Player.PlayerO);
+    }
+
+    private void assertWinnerEqualsTo(Player expectedWinner) {
         assertThatGameFeedbackEquals(GameFeedback.gameEndedWithWin);
-        assertThatCurrentPlayerEqualsTo(Player.PlayerO);
+        assertThatCurrentPlayerEqualsTo(expectedWinner);
     }
 
     @Test
     public void playerXWinsWhenTheBottomRowContainsAllX() {
         playMoves(bottomLeft, middleLeft, bottomRight, middleRight, bottomMiddle);
 
-        assertThatGameFeedbackEquals(GameFeedback.gameEndedWithWin);
-        assertThatCurrentPlayerEqualsTo(Player.PlayerX);
+        assertWinnerEqualsTo(Player.PlayerX);
     }
 
     @Test
     public void playerOWinsWhenTheRightColumnContainsAllO() {
         playMoves(topMiddle, topLeft, topRight, middleLeft, bottomRight, bottomLeft);
 
-        assertThatGameFeedbackEquals(GameFeedback.gameEndedWithWin);
-        assertThatCurrentPlayerEqualsTo(Player.PlayerO);
+        assertWinnerEqualsTo(Player.PlayerO);
     }
 
     private void assertThatGameFeedbackEquals(GameFeedback expectedFeedback) {

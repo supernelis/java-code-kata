@@ -32,6 +32,18 @@ public class TicTacToeTest {
 
     @Test
     @Ignore
+    public void playersAlternate() {
+        game.play(Positions.bottomLeft);
+        assertThat(game.currentPlayer(),equalTo("PlayerO"));
+
+        game.play(Positions.middleLeft);
+        assertThat(game.currentPlayer(),equalTo("PlayerX"));
+    }
+
+
+
+    @Test
+    @Ignore
     public void currentPlayerDoesNotChangeWhenPlayingOnTheSamePosition() {
         Positions pos = Positions.bottomLeft;
         game.play(pos);
@@ -40,4 +52,6 @@ public class TicTacToeTest {
         assertThat(game.currentPlayer(),equalTo("Player0"));
 
     }
+
+
 }

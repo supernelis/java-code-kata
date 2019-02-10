@@ -47,12 +47,16 @@ public class TicTacToe {
 
     }
 
-    private List<Player> getLeftColumn() {
-        return getValuesAtPositions(topLeft, middleLeft, bottomLeft);
+    private void switchPlayer() {
+        if (currentPlayer == Player.PlayerX) {
+            currentPlayer = Player.PlayerO;
+        } else {
+            currentPlayer = Player.PlayerX;
+        }
     }
 
-    private boolean allMatch(List<Player> listOfValues, Player expectedValue) {
-        return listOfValues.stream().allMatch(player -> expectedValue.equals(player));
+    private List<Player> getLeftColumn() {
+        return getValuesAtPositions(topLeft, middleLeft, bottomLeft);
     }
 
     private List<Player> getBottomRow() {
@@ -67,17 +71,11 @@ public class TicTacToe {
         return getValuesAtPositions(topLeft, topMiddle, topRight);
     }
 
-
-
-    private void switchPlayer() {
-        if (currentPlayer == Player.PlayerX) {
-            currentPlayer = Player.PlayerO;
-        } else {
-            currentPlayer = Player.PlayerX;
-        }
+    private boolean allMatch(List<Player> listOfValues, Player expectedValue) {
+        return listOfValues.stream().allMatch(player -> expectedValue.equals(player));
     }
 
-    private List<Player> getValuesAtPositions(Position ... positions){
+    private List<Player> getValuesAtPositions(Position... positions) {
         ArrayList<Player> values = new ArrayList<Player>();
 
         for (Position position : positions) {

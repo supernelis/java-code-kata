@@ -28,7 +28,7 @@ public class TicTacToe {
         moves.put(pos, currentPlayer);
         gameFeedback = GameFeedback.playSuccessfull;
 
-        if(getTopRow().stream().allMatch(player -> currentPlayer.equals(player))){
+        if(hasThreeInRow()){
             gameFeedback = GameFeedback.gameEndedWithWin;
             return;
         }
@@ -38,6 +38,10 @@ public class TicTacToe {
         }
 
         switchPlayer();
+    }
+
+    private boolean hasThreeInRow() {
+        return getTopRow().stream().allMatch(player -> currentPlayer.equals(player));
     }
 
     private List<Player> getTopRow() {

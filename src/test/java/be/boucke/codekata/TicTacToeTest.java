@@ -18,7 +18,12 @@ public class TicTacToeTest {
 
     @Test
     public void aGameCanBeStarted() {
-        assertThat(game.feedback(),equalTo(GameFeedback.gameStarted));
+        GameFeedback expectedFeedback = GameFeedback.gameStarted;
+        assertThatGameFeedbackEquals(expectedFeedback);
+    }
+
+    private void assertThatGameFeedbackEquals(GameFeedback expectedFeedback) {
+        assertThat(game.feedback(), equalTo(expectedFeedback));
     }
 
     @Test
@@ -32,7 +37,7 @@ public class TicTacToeTest {
         game.play(pos);
         game.play(pos);
 
-        assertThat(game.feedback(),equalTo(GameFeedback.positionAlreadytaken));
+        assertThatGameFeedbackEquals(GameFeedback.positionAlreadytaken);
     }
 
     @Test
@@ -40,7 +45,7 @@ public class TicTacToeTest {
         game.play(Position.bottomLeft);
         game.play(Position.middleLeft);
 
-        assertThat(game.feedback(),equalTo(GameFeedback.playSuccessfull));
+        assertThatGameFeedbackEquals(GameFeedback.playSuccessfull);
     }
 
     @Test

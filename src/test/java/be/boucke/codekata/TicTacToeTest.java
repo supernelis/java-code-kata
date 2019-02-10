@@ -1,6 +1,7 @@
 package be.boucke.codekata;
 
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import static org.hamcrest.core.IsEqual.equalTo;
@@ -27,5 +28,16 @@ public class TicTacToeTest {
         game.play(pos);
 
         assertThat(game.feedback(),equalTo(GameFeedback.positionAlreadytaken));
+    }
+
+    @Test
+    @Ignore
+    public void currentPlayerDoesNotChangeWhenPlayingOnTheSamePosition() {
+        Positions pos = Positions.bottomLeft;
+        game.play(pos);
+        game.play(pos);
+
+        assertThat(game.currentPlayer(),equalTo("Player0"));
+
     }
 }

@@ -22,10 +22,6 @@ public class TicTacToeTest {
         assertThatGameFeedbackEquals(expectedFeedback);
     }
 
-    private void assertThatGameFeedbackEquals(GameFeedback expectedFeedback) {
-        assertThat(game.feedback(), equalTo(expectedFeedback));
-    }
-
     @Test
     public void xAlwaysGoesFirst(){
         assertThat(game.currentPlayer(),equalTo(Player.PlayerX));
@@ -67,5 +63,8 @@ public class TicTacToeTest {
 
     }
 
+    private void assertThatGameFeedbackEquals(GameFeedback expectedFeedback) {
+        assertThat(game.feedback(), equalTo(expectedFeedback));
+    }
 
 }

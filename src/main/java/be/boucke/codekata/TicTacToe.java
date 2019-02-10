@@ -9,7 +9,7 @@ public class TicTacToe {
 
     private GameFeedback gameFeedback = GameFeedback.gameStarted;
     private Player currentPlayer = PlayerX;
-    private final Map<Position, Player> moves = new HashMap<Position, Player>();
+    private final Map<Position, Player> movesByPlayer = new HashMap<Position, Player>();
 
     public Player currentPlayer() {
         return currentPlayer;
@@ -20,12 +20,12 @@ public class TicTacToe {
     }
 
     public void play(Position pos) {
-        if (moves.containsKey(pos)) {
+        if (!isPositionFree(pos)) {
             gameFeedback = GameFeedback.positionAlreadytaken;
             return;
         }
 
-        moves.put(pos, currentPlayer);
+        movesByPlayer.put(pos, currentPlayer);
         gameFeedback = GameFeedback.playSuccessfull;
 
         if (hasThreeInRow()) {
@@ -33,11 +33,15 @@ public class TicTacToe {
             return;
         }
 
-        if (moves.size() == 9) {
+        if (movesByPlayer.size() == 9) {
             gameFeedback = GameFeedback.gameEndedWithDraw;
         }
 
         switchPlayer();
+    }
+
+    private boolean isPositionFree(Position pos) {
+        return !movesByPlayer.containsKey(pos);
     }
 
     private boolean hasThreeInRow() {
@@ -100,7 +104,7 @@ public class TicTacToe {
         ArrayList<Player> values = new ArrayList<Player>();
 
         for (Position position : positions) {
-            values.add(moves.get(position));
+            values.add(movesByPlayer.get(position));
         }
 
         return values;

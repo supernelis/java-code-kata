@@ -7,7 +7,7 @@ public class TicTacToe {
 
     private GameFeedback gameFeedback = GameFeedback.gameStarted;
     private Player currentPlayer = Player.PlayerX;
-    private Map<Position,Player> moves = new HashMap<Position, Player>();
+    private final Map<Position, Player> moves = new HashMap<Position, Player>();
 
     public Player currentPlayer() {
         return currentPlayer;
@@ -18,17 +18,17 @@ public class TicTacToe {
     }
 
     public void play(Position pos) {
-        if (moves.containsKey(pos)){
+        if (moves.containsKey(pos)) {
             gameFeedback = GameFeedback.positionAlreadytaken;
             return;
         }
 
-        moves.put(pos,currentPlayer);
+        moves.put(pos, currentPlayer);
         gameFeedback = GameFeedback.playSuccessfull;
 
         if (currentPlayer == Player.PlayerX) {
             currentPlayer = Player.PlayerO;
-        }else{
+        } else {
             currentPlayer = Player.PlayerX;
         }
 

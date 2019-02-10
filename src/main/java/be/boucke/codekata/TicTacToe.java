@@ -5,7 +5,7 @@ import java.util.Map;
 
 public class TicTacToe {
 
-    private GameFeedback gameFeedback = GameFeedback.positionAlreadytaken;
+    private GameFeedback gameFeedback = GameFeedback.gameStarted;
     private Player currentPlayer = Player.PlayerX;
     private Map<Position,Player> moves = new HashMap<Position, Player>();
 

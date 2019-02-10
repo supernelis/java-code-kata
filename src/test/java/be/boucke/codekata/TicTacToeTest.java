@@ -17,6 +17,11 @@ public class TicTacToeTest {
     }
 
     @Test
+    public void aGameCanBeStarted() {
+        assertThat(game.feedback(),equalTo(GameFeedback.gameStarted));
+    }
+
+    @Test
     public void xAlwaysGoesFirst(){
         assertThat(game.currentPlayer(),equalTo(Player.PlayerX));
     }

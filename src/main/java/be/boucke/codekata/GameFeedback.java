@@ -1,5 +1,5 @@
 package be.boucke.codekata;
 
 public enum GameFeedback {
-    playSuccessfull, positionAlreadytaken
+    playSuccessfull, gameStarted, positionAlreadytaken
 }

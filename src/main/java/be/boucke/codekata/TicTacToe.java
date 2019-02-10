@@ -2,6 +2,8 @@ package be.boucke.codekata;
 
 import java.util.*;
 
+import static be.boucke.codekata.Position.*;
+
 public class TicTacToe {
 
     private GameFeedback gameFeedback = GameFeedback.gameStarted;
@@ -40,8 +42,13 @@ public class TicTacToe {
     private boolean hasThreeInRow() {
         return allMatch(getTopRow(), this.currentPlayer) ||
                 allMatch(getMiddleRow(), this.currentPlayer) ||
-                allMatch(getBottomRow(), this.currentPlayer);
+                allMatch(getBottomRow(), this.currentPlayer) ||
+                allMatch(getLeftColumn(), this.currentPlayer);
 
+    }
+
+    private List<Player> getLeftColumn() {
+        return getValuesAtPositions(topLeft, middleLeft, bottomLeft);
     }
 
     private boolean allMatch(List<Player> listOfValues, Player expectedValue) {
@@ -49,16 +56,18 @@ public class TicTacToe {
     }
 
     private List<Player> getBottomRow() {
-        return getValuesAtPositions(Position.bottomLeft,Position.bottomMiddle,Position.bottomRight);
+        return getValuesAtPositions(bottomLeft, bottomMiddle, bottomRight);
     }
 
     private List<Player> getMiddleRow() {
-        return getValuesAtPositions(Position.middleLeft,Position.middleMiddle,Position.middleRight);
+        return getValuesAtPositions(middleLeft, middleMiddle, middleRight);
     }
 
     private List<Player> getTopRow() {
-        return getValuesAtPositions(Position.topLeft,Position.topMiddle,Position.topRight);
+        return getValuesAtPositions(topLeft, topMiddle, topRight);
     }
+
+
 
     private void switchPlayer() {
         if (currentPlayer == Player.PlayerX) {

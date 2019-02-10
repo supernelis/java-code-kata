@@ -4,6 +4,7 @@ import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
 
+import static be.boucke.codekata.Position.*;
 import static org.hamcrest.core.IsEqual.equalTo;
 import static org.junit.Assert.assertThat;
 
@@ -28,7 +29,7 @@ public class TicTacToeTest {
 
     @Test
     public void playersCannotPlayOnAPlayedPosition() {
-        Position pos = Position.bottomLeft;
+        Position pos = bottomLeft;
         game.play(pos);
         game.play(pos);
 
@@ -37,24 +38,24 @@ public class TicTacToeTest {
 
     @Test
     public void playersCanPlayOnAnEmptyPosition() {
-        game.play(Position.bottomLeft);
-        game.play(Position.middleLeft);
+        game.play(bottomLeft);
+        game.play(middleLeft);
 
         assertThatGameFeedbackEquals(GameFeedback.playSuccessfull);
     }
 
     @Test
     public void playersAlternate() {
-        game.play(Position.bottomLeft);
+        game.play(bottomLeft);
         assertThatCurrentPlayerEqualsTo(Player.PlayerO);
 
-        game.play(Position.middleLeft);
+        game.play(middleLeft);
         assertThatCurrentPlayerEqualsTo(Player.PlayerX);
     }
 
     @Test
     public void playersDoNotAlternateWhenPositionAlreadyTaken() {
-        Position pos = Position.bottomLeft;
+        Position pos = bottomLeft;
         game.play(pos);
         game.play(pos);
 
@@ -63,14 +64,14 @@ public class TicTacToeTest {
 
     @Test
     public void drawWhenAllAreFullAndNonOfThePlayersHas3InRow() {
-        playMoves(Position.topLeft, Position.topMiddle, Position.topRight, Position.middleLeft, Position.middleMiddle, Position.bottomRight, Position.middleRight, Position.bottomLeft, Position.bottomMiddle);
+        playMoves(topLeft, topMiddle, topRight, middleLeft, middleMiddle, bottomRight, middleRight, bottomLeft, bottomMiddle);
 
         assertThatGameFeedbackEquals(GameFeedback.gameEndedWithDraw);
     }
 
     @Test
     public void playerXWinsWhenTheTopRowContainsAllX() {
-        playMoves(Position.topLeft,Position.middleLeft, Position.topRight, Position.middleRight, Position.topMiddle);
+        playMoves(topLeft, middleLeft, topRight, middleRight, topMiddle);
 
         assertThatGameFeedbackEquals(GameFeedback.gameEndedWithWin);
         assertThatCurrentPlayerEqualsTo(Player.PlayerX);
@@ -78,7 +79,7 @@ public class TicTacToeTest {
 
     @Test
     public void playerOWinsWhenTheMiddleRowContainsAllO() {
-        playMoves(Position.topLeft,Position.middleLeft, Position.topRight, Position.middleRight, Position.bottomMiddle, Position.middleMiddle);
+        playMoves(topLeft, middleLeft, topRight, middleRight, bottomMiddle, middleMiddle);
 
         assertThatGameFeedbackEquals(GameFeedback.gameEndedWithWin);
         assertThatCurrentPlayerEqualsTo(Player.PlayerO);
@@ -86,10 +87,18 @@ public class TicTacToeTest {
 
     @Test
     public void playerXWinsWhenTheBottomRowContainsAllX() {
-        playMoves(Position.bottomLeft,Position.middleLeft, Position.bottomRight, Position.middleRight, Position.bottomMiddle);
+        playMoves(bottomLeft, middleLeft, bottomRight, middleRight, bottomMiddle);
 
         assertThatGameFeedbackEquals(GameFeedback.gameEndedWithWin);
         assertThatCurrentPlayerEqualsTo(Player.PlayerX);
+    }
+
+    @Test
+    public void playerOWinsWhenTheRightColumnContainsAllO() {
+        playMoves(topMiddle, topLeft, topRight, middleLeft, bottomRight, bottomLeft);
+
+        assertThatGameFeedbackEquals(GameFeedback.gameEndedWithWin);
+        assertThatCurrentPlayerEqualsTo(Player.PlayerO);
     }
 
     private void assertThatGameFeedbackEquals(GameFeedback expectedFeedback) {

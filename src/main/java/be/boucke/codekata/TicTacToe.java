@@ -1,9 +1,6 @@
 package be.boucke.codekata;
 
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class TicTacToe {
 
@@ -48,15 +45,15 @@ public class TicTacToe {
     }
 
     private List<Player> getBottomRow() {
-        return Arrays.asList(moves.get(Position.bottomLeft), moves.get(Position.bottomMiddle), moves.get(Position.bottomRight));
+        return getValuesAtPositions(Position.bottomLeft,Position.bottomMiddle,Position.bottomRight);
     }
 
     private List<Player> getMiddleRow() {
-        return Arrays.asList(moves.get(Position.middleLeft), moves.get(Position.middleMiddle), moves.get(Position.middleRight));
+        return getValuesAtPositions(Position.middleLeft,Position.middleMiddle,Position.middleRight);
     }
 
     private List<Player> getTopRow() {
-        return Arrays.asList(moves.get(Position.topLeft), moves.get(Position.topMiddle), moves.get(Position.topRight));
+        return getValuesAtPositions(Position.topLeft,Position.topMiddle,Position.topRight);
     }
 
     private void switchPlayer() {
@@ -65,5 +62,15 @@ public class TicTacToe {
         } else {
             currentPlayer = Player.PlayerX;
         }
+    }
+
+    private List<Player> getValuesAtPositions(Position ... positions){
+        ArrayList<Player> values = new ArrayList<Player>();
+
+        for (Position position : positions) {
+            values.add(moves.get(position));
+        }
+
+        return values;
     }
 }

@@ -3,13 +3,12 @@ package be.boucke.codekata;
 import java.util.*;
 
 import static be.boucke.codekata.Player.*;
-import static be.boucke.codekata.Position.*;
 
 public class TicTacToe {
 
     private GameFeedback gameFeedback = GameFeedback.gameStarted;
     private Player currentPlayer = PlayerX;
-    private final Map<Position, Player> movesByPlayer = new HashMap<Position, Player>();
+    private Board board = new Board();
 
     public Player currentPlayer() {
         return currentPlayer;
@@ -20,13 +19,13 @@ public class TicTacToe {
     }
 
     public void play(Position pos) {
-        if (!isPositionFree(pos)) {
+        if (!board.isPositionFree(pos)) {
             gameFeedback = GameFeedback.positionAlreadytaken;
             return;
         }
 
         Player player = this.currentPlayer;
-        move(pos, player);
+        board.addMove(pos, player);
         gameFeedback = GameFeedback.playSuccessfull;
 
         if (hasThreeInRow()) {
@@ -34,51 +33,25 @@ public class TicTacToe {
             return;
         }
 
-        if (allSquaresFilled()) {
+        if (board.allSquaresFilled()) {
             gameFeedback = GameFeedback.gameEndedWithDraw;
         }
 
         switchPlayer();
     }
 
-    private boolean allSquaresFilled() {
-        return movesByPlayer.size() == 9;
-    }
 
-    private void move(Position pos, Player player) {
-        movesByPlayer.put(pos, player);
-    }
-
-    private boolean isPositionFree(Position pos) {
-        return !movesByPlayer.containsKey(pos);
-    }
 
     private boolean hasThreeInRow() {
-        return allMatch(getTopRow(), this.currentPlayer) ||
-                allMatch(getMiddleRow(), this.currentPlayer) ||
-                allMatch(getBottomRow(), this.currentPlayer) ||
-                allMatch(getLeftColumn(), this.currentPlayer)||
-                allMatch(getMiddleColumn(), this.currentPlayer)||
-                allMatch(getRightColumn(), this.currentPlayer) ||
-                allMatch(getSlashDownRow(), this.currentPlayer) ||
-                allMatch(getSlashUpRow(), this.currentPlayer);
+        return allMatch(board.getTopRow(this), this.currentPlayer) ||
+                allMatch(board.getMiddleRow(this), this.currentPlayer) ||
+                allMatch(board.getBottomRow(this), this.currentPlayer) ||
+                allMatch(board.getLeftColumn(this), this.currentPlayer)||
+                allMatch(board.getMiddleColumn(this), this.currentPlayer)||
+                allMatch(board.getRightColumn(this), this.currentPlayer) ||
+                allMatch(board.getSlashDownRow(this), this.currentPlayer) ||
+                allMatch(board.getSlashUpRow(this), this.currentPlayer);
 
-    }
-
-    private List<Player> getSlashUpRow() {
-        return getValuesAtPositions(bottomLeft, middleMiddle, topRight);
-    }
-
-    private List<Player> getSlashDownRow() {
-        return getValuesAtPositions(topLeft, middleMiddle, bottomRight);
-    }
-
-    private List<Player> getRightColumn() {
-        return getValuesAtPositions(topRight, middleRight, bottomRight);
-    }
-
-    private List<Player> getMiddleColumn() {
-        return getValuesAtPositions(topMiddle, middleMiddle, bottomMiddle);
     }
 
     private void switchPlayer() {
@@ -89,33 +62,9 @@ public class TicTacToe {
         }
     }
 
-    private List<Player> getLeftColumn() {
-        return getValuesAtPositions(topLeft, middleLeft, bottomLeft);
-    }
-
-    private List<Player> getBottomRow() {
-        return getValuesAtPositions(bottomLeft, bottomMiddle, bottomRight);
-    }
-
-    private List<Player> getMiddleRow() {
-        return getValuesAtPositions(middleLeft, middleMiddle, middleRight);
-    }
-
-    private List<Player> getTopRow() {
-        return getValuesAtPositions(topLeft, topMiddle, topRight);
-    }
-
     private boolean allMatch(List<Player> listOfValues, Player expectedValue) {
         return listOfValues.stream().allMatch(player -> expectedValue.equals(player));
     }
 
-    private List<Player> getValuesAtPositions(Position... positions) {
-        ArrayList<Player> values = new ArrayList<Player>();
 
-        for (Position position : positions) {
-            values.add(movesByPlayer.get(position));
-        }
-
-        return values;
-    }
 }

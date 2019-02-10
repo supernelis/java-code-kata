@@ -84,6 +84,14 @@ public class TicTacToeTest {
         assertThatCurrentPlayerEqualsTo(Player.PlayerO);
     }
 
+    @Test
+    public void playerXWinsWhenTheBottomRowContainsAllX() {
+        playMoves(Position.bottomLeft,Position.middleLeft, Position.bottomRight, Position.middleRight, Position.bottomMiddle);
+
+        assertThatGameFeedbackEquals(GameFeedback.gameEndedWithWin);
+        assertThatCurrentPlayerEqualsTo(Player.PlayerX);
+    }
+
     private void assertThatGameFeedbackEquals(GameFeedback expectedFeedback) {
         assertThat(game.feedback(), equalTo(expectedFeedback));
     }

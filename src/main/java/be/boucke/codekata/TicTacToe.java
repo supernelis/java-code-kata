@@ -9,7 +9,7 @@ public class TicTacToe {
         return GameFeedback.positionAlreadytaken;
     }
 
-    public void play(Positions pos) {
+    public void play(Position pos) {
 
     }
 }

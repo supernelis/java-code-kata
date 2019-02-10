@@ -1,6 +1,8 @@
 package be.boucke.codekata;
 
+import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class TicTacToe {
@@ -26,11 +28,20 @@ public class TicTacToe {
         moves.put(pos, currentPlayer);
         gameFeedback = GameFeedback.playSuccessfull;
 
+        if(getTopRow().stream().allMatch(player -> currentPlayer.equals(player))){
+            gameFeedback = GameFeedback.gameEndedWithWin;
+            return;
+        }
+
         if (moves.size() == 9) {
             gameFeedback = GameFeedback.gameEndedWithDraw;
         }
 
         switchPlayer();
+    }
+
+    private List<Player> getTopRow() {
+        return Arrays.asList(moves.get(Position.topLeft), moves.get(Position.topMiddle), moves.get(Position.topRight));
     }
 
     private void switchPlayer() {

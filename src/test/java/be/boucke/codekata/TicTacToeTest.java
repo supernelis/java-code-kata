@@ -98,8 +98,15 @@ public class TicTacToeTest {
     }
 
     @Test
-    public void playerXWinsWhenTheLMiddleColumnContainsAllX() {
+    public void playerXWinsWhenTheMiddleColumnContainsAllX() {
         playMoves(topMiddle, topLeft, middleMiddle, middleLeft, bottomMiddle);
+
+        assertWinnerEqualsTo(Player.PlayerX);
+    }
+
+    @Test
+    public void playerXWinsWhenTheRightColumnContainsAllX() {
+        playMoves(topRight, topLeft, middleRight, middleLeft, bottomRight);
 
         assertWinnerEqualsTo(Player.PlayerX);
     }

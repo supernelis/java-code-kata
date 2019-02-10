@@ -25,7 +25,8 @@ public class TicTacToe {
             return;
         }
 
-        movesByPlayer.put(pos, currentPlayer);
+        Player player = this.currentPlayer;
+        move(pos, player);
         gameFeedback = GameFeedback.playSuccessfull;
 
         if (hasThreeInRow()) {
@@ -33,11 +34,19 @@ public class TicTacToe {
             return;
         }
 
-        if (movesByPlayer.size() == 9) {
+        if (allSquaresFilled()) {
             gameFeedback = GameFeedback.gameEndedWithDraw;
         }
 
         switchPlayer();
+    }
+
+    private boolean allSquaresFilled() {
+        return movesByPlayer.size() == 9;
+    }
+
+    private void move(Position pos, Player player) {
+        movesByPlayer.put(pos, player);
     }
 
     private boolean isPositionFree(Position pos) {

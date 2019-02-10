@@ -31,7 +31,6 @@ public class TicTacToeTest {
     }
 
     @Test
-    @Ignore
     public void playersAlternate() {
         game.play(Position.bottomLeft);
         assertThat(game.currentPlayer(),equalTo(Player.PlayerO));

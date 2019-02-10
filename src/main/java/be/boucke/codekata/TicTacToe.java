@@ -1,8 +1,11 @@
 package be.boucke.codekata;
 
 public class TicTacToe {
+
+    private Player currentPlayer = Player.PlayerX;
+
     public Player currentPlayer() {
-        return Player.PlayerX;
+        return currentPlayer;
     }
 
     public GameFeedback feedback() {
@@ -10,6 +13,12 @@ public class TicTacToe {
     }
 
     public void play(Position pos) {
+
+        if (currentPlayer == Player.PlayerX) {
+            currentPlayer = Player.PlayerO;
+        }else{
+            currentPlayer = Player.PlayerX;
+        }
 
     }
 }

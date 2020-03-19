@@ -1,5 +1,7 @@
 # Tic Tac Toe
 
+This cool game has the following ruls
+
 ## Rules
 
 - X always goes first.
